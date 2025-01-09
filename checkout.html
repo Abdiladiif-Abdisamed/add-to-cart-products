@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Page</title>
+  <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+  <div class="checkout-container">
+    <h1 class="title">Checkout Page</h1>
+
+    <!-- Product Summary Section -->
+    <div class="product-summary">
+      <h2>Your Cart</h2>
+      <div class="product-item">
+        <span class="product-name">Product 1</span>
+        <span class="product-quantity">Qty: 2</span>
+        <span class="product-price">$20</span>
+      </div>
+      <div class="product-item">
+        <span class="product-name">Product 2</span>
+        <span class="product-quantity">Qty: 1</span>
+        <span class="product-price">$15</span>
+      </div>
+      <div class="product-item">
+        <span class="product-name">Product 3</span>
+        <span class="product-quantity">Qty: 3</span>
+        <span class="product-price">$45</span>
+      </div>
+      <div class="total">
+        <span>Total:</span>
+        <span class="total-price">$80</span>
+      </div>
+    </div>
+
+    <!-- Payment Section -->
+    <div class="payment-section">
+      <h2>Payment Information</h2>
+      <form id="payment-form">
+        <!-- Payment Method Selection -->
+        <div class="payment-method">
+          <label>
+            <input type="radio" name="payment-method" value="local" checked>
+            Local Payment
+          </label>
+          <label>
+            <input type="radio" name="payment-method" value="mastercard">
+            MasterCard / Visa
+          </label>
+        </div>
+
+        <!-- Local Payment Section -->
+        <div id="local-payment" class="payment-details">
+          <label for="phone-number">Phone Number:</label>
+          <input type="text" id="phone-number" placeholder="Enter your mobile number">
+        </div>
+
+        <!-- MasterCard/Visa Payment Section -->
+        <div id="mastercard-payment" class="payment-details hidden">
+          <label for="card-name">Cardholder Name:</label>
+          <input type="text" id="card-name" placeholder="John Doe">
+
+          <label for="card-number">Card Number:</label>
+          <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+
+          <label for="expiry-date">Expiry Date:</label>
+          <input type="text" id="expiry-date" placeholder="MM/YY">
+
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" placeholder="123">
+        </div>
+
+        <button type="submit" class="btn-checkout">Confirm & Pay</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Select payment method radio buttons and sections
+    const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
+    const localPayment = document.getElementById('local-payment');
+    const mastercardPayment = document.getElementById('mastercard-payment');
+
+    // Add event listeners to payment method radio buttons
+    paymentMethods.forEach(method => {
+      method.addEventListener('change', () => {
+        if (method.value === 'local') {
+          localPayment.classList.remove('hidden');
+          mastercardPayment.classList.add('hidden');
+        } else {
+          localPayment.classList.add('hidden');
+          mastercardPayment.classList.remove('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
